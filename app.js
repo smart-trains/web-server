@@ -11,9 +11,7 @@ var api = require('./routes/api');
 
 var app = express();
 
-var initDb = require('./lib/initDb');
-
-initDb();
+require('./lib/initDb');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
