@@ -1,0 +1,15 @@
+/* CSS declarations go here */
+.rows {
+    box-sizing: border-box;
+    height: 95px;
+    width: 750px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cells {
+    height: 90px;
+    width: 90px;
+    background: black;
+    color: white;
+}

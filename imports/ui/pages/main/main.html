@@ -4,11 +4,21 @@
 
 <body>
 <h1>Smart trains portal</h1>
-
 {{> raspberryIp}}
+{{> irCells}}
 </body>
 
 <template name="raspberryIp">
-    Latest IP reported from the pi:
-    {{latestIp}}
+    <div>
+        Latest network info reported from the pi:
+        <p>
+            IP: {{latestIp.ip}}
+        </p>
+        <p>
+            SSID: {{latestIp.ssid}}
+        </p>
+        <p>
+            at: {{toDateString latestIp.datetime}}
+        </p>
+    </div>
 </template>

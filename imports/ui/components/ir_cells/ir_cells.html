@@ -1,0 +1,13 @@
+<template name="irCells">
+    {{#each val in cells}}
+        {{> irCellsRows cellsInRow=val}}
+    {{/each}}
+</template>
+
+<template name="irCellsRows">
+    <div class="rows">
+        {{#each val in cellsInRow}}
+            <div class="cells" style={{color val}}>{{val}}</div>
+        {{/each}}
+    </div>
+</template>
