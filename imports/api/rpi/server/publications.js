@@ -47,7 +47,7 @@ Meteor.publish('trains', function() {
     SELECT id AS _id, name
     FROM app.train__c
     ORDER BY createddate DESC
-    LIMIT 1
+    LIMIT 1;
   `;
 
     function triggers() {
