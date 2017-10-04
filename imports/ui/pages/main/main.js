@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Template } from 'meteor/templating';
 
-import RpiStatus from "../../../api/rpi/rpi_status";
+import RpiStatus from "../../../api/rpi/server/rpi_status";
 
 import "./main.html";
 import "./main.css";

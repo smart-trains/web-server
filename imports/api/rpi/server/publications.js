@@ -2,19 +2,42 @@
  * Created by ra on 16/08/2017.
  */
 import { Meteor } from "meteor/meteor";
-import RpiStatus from "../rpi_status";
-import DctIr from "../dct_ir";
+
+import mpg from "meteor-pg";
+
+import { name as ir_name } from "./dct_ir";
+import { name as status_name } from "./rpi_status";
 
 Meteor.publish('rpi.status.latest', function() {
-    return RpiStatus.find({}, {
-        sort: { datetime: -1 },
-        limit: 1
-    });
+    const sql = `
+    SELECT id AS _id, *
+    FROM rpi_status
+    ORDER BY datetime DESC
+    LIMIT 1
+  `;
+
+    function triggers() {
+        // This function is rather important.
+        // For now, just trigger any change
+        return true;
+    }
+
+    return mpg.select(status_name, sql, undefined, triggers);
 });
 
 Meteor.publish('dct.ir.latest', function() {
-    return DctIr.find({}, {
-        sort: { datetime: -1 },
-        limit: 1
-    });
+    const sql = `
+    SELECT id AS _id, *
+    FROM temperature_matrix
+    ORDER BY datetime DESC
+    LIMIT 1
+  `;
+
+    function triggers() {
+        // This function is rather important.
+        // For now, just trigger any change
+        return true;
+    }
+
+    return mpg.select(ir_name, sql, undefined, triggers);
 });
