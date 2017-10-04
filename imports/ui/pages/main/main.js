@@ -1,21 +1,34 @@
 import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
 import { Template } from 'meteor/templating';
 
-import RpiStatus from "../../../api/rpi/server/rpi_status";
+//import RpiStatus from "../../../api/rpi/server/rpi_status";
 
 import "./main.html";
 import "./main.css";
 
-Template.raspberryIp.onCreated(function() {
-    this.subscribe("rpi.status.latest");
+const Train = new Mongo.Collection('trains');
+
+// Template.raspberryIp.onCreated(function() {
+//     this.subscribe("rpi.status.latest");
+// });
+//
+// Template.raspberryIp.helpers({
+//     latestIp() {
+//         return RpiStatus.findOne() || {};
+//     },
+//
+//     toDateString(dt) {
+//         return new Date(dt).toString();
+//     }
+// });
+
+Template.train.onCreated(function() {
+    this.subscribe("trains");
 });
 
-Template.raspberryIp.helpers({
-    latestIp() {
-        return RpiStatus.findOne() || {};
+Template.train.helpers({
+    train() {
+        return Train.findOne() || {};
     },
-
-    toDateString(dt) {
-        return new Date(dt).toString();
-    }
 });

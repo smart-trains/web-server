@@ -41,3 +41,20 @@ Meteor.publish('dct.ir.latest', function() {
 
     return mpg.select(ir_name, sql, undefined, triggers);
 });
+
+Meteor.publish('trains', function() {
+    const sql = `
+    SELECT id AS _id, name
+    FROM app.train__c
+    ORDER BY reateddate DESC
+    LIMIT 1
+  `;
+
+    function triggers() {
+        // This function is rather important.
+        // For now, just trigger any change
+        return true;
+    }
+
+    return mpg.select('trains', sql, undefined, triggers);
+});
