@@ -29,6 +29,8 @@ Template.train.onCreated(function() {
 
 Template.train.helpers({
     train() {
-        return Train.findOne() || {};
+        const one = Train.findOne();
+        console.log(one);
+        return one || {};
     },
 });

@@ -46,7 +46,7 @@ Meteor.publish('trains', function() {
     const sql = `
     SELECT id AS _id, name
     FROM app.train__c
-    ORDER BY reateddate DESC
+    ORDER BY createddate DESC
     LIMIT 1
   `;
 
