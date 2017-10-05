@@ -9,20 +9,6 @@ import "./main.css";
 
 const Train = new Mongo.Collection('trains');
 
-// Template.raspberryIp.onCreated(function() {
-//     this.subscribe("rpi.status.latest");
-// });
-//
-// Template.raspberryIp.helpers({
-//     latestIp() {
-//         return RpiStatus.findOne() || {};
-//     },
-//
-//     toDateString(dt) {
-//         return new Date(dt).toString();
-//     }
-// });
-
 Template.train.onCreated(function() {
     this.subscribe("trains");
 });
