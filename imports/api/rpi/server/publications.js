@@ -13,8 +13,6 @@ Meteor.publish('trains', function() {
     `;
 
     function triggers() {
-        // This function is rather important.
-        // For now, just trigger any change
         return true;
     }
 
