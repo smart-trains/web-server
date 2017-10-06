@@ -8,7 +8,7 @@ import mpg from "meteor-pg";
 Meteor.publish('trains', function() {
     const sql = `
         SELECT id AS _id, name
-        FROM train__c
+        FROM app.train__c
         ORDER BY _id DESC
     `;
 
