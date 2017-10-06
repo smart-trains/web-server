@@ -5,8 +5,11 @@ import { Meteor } from "meteor/meteor";
 
 import mpg from "meteor-pg";
 
-mpg.none('SET search_path TO app');
+const setSchema = () => mpg.none('SET search_path TO app');
+
 Meteor.publish('trains', function() {
+    setSchema();
+
     const sql = `
         SELECT id AS _id, name
         FROM train__c
