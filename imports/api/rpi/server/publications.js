@@ -5,7 +5,7 @@ import { Meteor } from "meteor/meteor";
 
 import mpg from "meteor-pg";
 
-
+mpg.none('SET search_path TO app');
 Meteor.publish('trains', function() {
     const sql = `
         SELECT id AS _id, name
