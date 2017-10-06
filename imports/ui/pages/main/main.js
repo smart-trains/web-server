@@ -15,10 +15,6 @@ Template.train.onCreated(function() {
 
 Template.train.helpers({
     train() {
-        const two = Train.find({});
-        console.log(two);
-        const one = Train.findOne();
-        console.log(one);
-        return one || {};
+        return Train.findOne({}) || {};
     },
 });

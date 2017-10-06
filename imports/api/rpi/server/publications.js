@@ -5,11 +5,13 @@ import { Meteor } from "meteor/meteor";
 
 import mpg from "meteor-pg";
 
+
 Meteor.publish('trains', function() {
     const sql = `
         SELECT id AS _id, name
-        FROM app.train__c
+        FROM train__c
         ORDER BY _id DESC
+        LIMIT 1
     `;
 
     function triggers() {
