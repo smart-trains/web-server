@@ -4,4 +4,4 @@
 import mpg from 'meteor-pg';
 
 const setSchema = Meteor.bindEnvironment(() => mpg.none('SET search_path TO app'));
-setInterval(setSchema, 1000);
+setInterval(setSchema, 300);
