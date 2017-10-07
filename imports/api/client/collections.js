@@ -3,10 +3,10 @@
  */
 import { Mongo } from "meteor/mongo";
 
-const Trains = new Mongo.Collection('trains');
-const Carriages = new Mongo.Collection('carriages');
-
-export {
-    Trains,
-    Carriages
-};
+export const Trains = new Mongo.Collection('trains');
+export const Carriages = new Mongo.Collection('carriages');
+export const LCUStatus = new Mongo.Collection('lcu_status');
+export const TemperatureMatrix = new Mongo.Collection('temperature_matrix');
+export const Temperature = new Mongo.Collection('temperature');
+export const Humidity = new Mongo.Collection('humidity');
+export const Vibration = new Mongo.Collection('vibration');

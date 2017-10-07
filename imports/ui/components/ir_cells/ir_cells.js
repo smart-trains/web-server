@@ -3,23 +3,19 @@ import { Template } from 'meteor/templating';
 
 import is from "is";
 
-import DctIr from "../../../api/server/dct_ir";
+import {
+    TemperatureMatrix
+} from "../../../api/client/collections";
 
 import { NUM_CELLS } from "../../../config/consts";
 
 import "./ir_cells.html";
 import "./ir_cells.css";
 
-Template.irCells.onCreated(function() {
-    this.subscribe("rpi.status.latest");
-    this.subscribe("dct.ir.latest");
-});
-
-// Access parent helper?
 
 Template.irCells.helpers({
     cells() {
-        const data = DctIr.findOne() || {};
+        const data = TemperatureMatrix.find({ carriage__c: this.sfid }, { sort: { recorded_at__c: -1 } }) || {};
         const CELLS_PER_ROW = 8;
         const cells = [];
 
@@ -54,8 +50,8 @@ Template.irCellsRows.helpers({
                 .replace("blue", "255");
         } else {
             return background
-                .replace("red", Math.round(temp/80 * 255))
-                .replace("blue", Math.round(255 - temp/80 * 255));
+                .replace("red", Math.round(temp / 80 * 255))
+                .replace("blue", Math.round(255 - temp / 80 * 255));
         }
     }
 });

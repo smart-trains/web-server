@@ -3,7 +3,11 @@ import { Mongo } from "meteor/mongo";
 import { Template } from "meteor/templating";
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import { Trains, Carriages } from "../../../api/client/collections";
+import {
+    Trains,
+    Carriages,
+    LCUStatus
+} from "../../../api/client/collections";
 
 import "./main.less";
 import "./main.html";
@@ -12,6 +16,7 @@ import "./main.html";
 Template.trainDashboard.onCreated(function() {
     this.subscribe("trains");
     this.subscribe("carriages");
+    this.subscribe("lcu_status");
 });
 
 Template.trainDashboard.onRendered(function() {
@@ -29,23 +34,31 @@ Template.trainItem.onCreated(function() {
 });
 
 Template.trainItem.helpers({
-    carriages(trainId) {
-        return Carriages.find({ train__c: trainId }, {sort: { number_in_train__c: 1}})
+    lcuStatus() {
+        return LCUStatus.find({ train__c: this.sfid }, { sort: { recorded_at__c: -1 } }).fetch()[0];
+    },
+    carriages() {
+        return Carriages.find({ train__c: this.sfid }, {sort: { number_in_train__c: 1}})
+    },
+    isActive(carriage) {
+        return carriage.sfid === Template.instance().activeCarriageId.get();
     },
     activeCarriageId() {
-        console.log(Template.instance().activeCarriageId.get());
         return Template.instance().activeCarriageId.get();
     }
 });
 
 Template.trainItem.events({
     "click .carriage"(e) {
-        Template.instance().activeCarriageId.set(this.sfid);
+        Template.instance().activeCarriageId.set(this.carriage.sfid);
     }
 });
 
 Template.carriageItem.helpers({
-    carriageImage(numberInTrain) {
-        return `car${(numberInTrain - 1) % 3 + 1}`;
+    backgroundClass() {
+        return this.isActive ? "active" : "";
+    },
+    carriageImage() {
+        return `car${(this.carriage.number_in_train__c - 1) % 3 + 1}`;
     },
 });

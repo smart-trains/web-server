@@ -1,15 +1,20 @@
 /* CSS declarations go here */
 .rows {
     box-sizing: border-box;
-    height: 45px;
-    width: 350px;
+    height: 44px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 2px;
 }
 
 .cells {
-    height: 40px;
-    width: 40px;
+    height: 100%;
+    flex-basis: 40px;
+    flex-shrink: 1;
+    border-radius: 50%;
     background: black;
     color: white;
+    line-height: 40px;
+    text-align: center;
 }
