@@ -3,4 +3,4 @@
  */
 import "../imports/startup/server/init";
 
-import "../imports/api/rpi/server/publications";
+import "../imports/api/server/publications";

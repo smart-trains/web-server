@@ -1,0 +1,59 @@
+@import "../../../../client/semantic-ui/semantic";
+
+.carriage-image(@image) {
+  background-image: url(@image);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 46px;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  background-image: url(/images/metro_map.png);
+  background-position: center;
+  background-size: cover;
+  filter: blur(5px);
+  z-index: -1;
+  position: fixed;
+}
+
+.page {
+  padding-top: 20px;
+
+  .train-dashboard {
+    border-top: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+
+    .carriages {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+
+      .carriage {
+        flex-basis: 126px;
+        flex-shrink: 1;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+
+        .car1 {
+          .carriage-image("/images/car1.png");
+        }
+        .car2 {
+          .carriage-image("/images/car2.png");
+        }
+        .car3 {
+          .carriage-image("/images/car3.png");
+        }
+
+        .caption {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

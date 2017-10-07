@@ -3,7 +3,7 @@ import { Template } from 'meteor/templating';
 
 import is from "is";
 
-import DctIr from "../../../api/rpi/server/dct_ir";
+import DctIr from "../../../api/server/dct_ir";
 
 import { NUM_CELLS } from "../../../config/consts";
 

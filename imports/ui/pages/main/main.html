@@ -2,12 +2,58 @@
     <title>smart_trains</title>
 </head>
 
-<body>
-<h1>Smart trains portal</h1>
-{{> train}}
+<body class="main">
+<div class="background"></div>
+<div class="ui container page">
+    <h1 class="ui top attached header">
+        Metro Operation Centre
+    </h1>
+    {{> trainDashboard}}
+</div>
 </body>
 
-<template name="train">
-    Name: {{train.name}},
-    Created: {{train._id}}
+<template name="trainDashboard">
+    <div class="train-dashboard ui styled accordion fluid">
+        {{#each train in trains}}
+            {{> trainItem train}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="trainItem">
+    <div class="title">
+        <i class="dropdown icon"></i>
+        {{this.name}}
+    </div>
+    <div class="content">
+        <p class="transition visible" style="display: block !important;">
+            Name: {{this.name}},
+            DBId: {{this._id}},
+            SfId: {{this.sfid}}
+        </p>
+        <div class="carriages">
+            {{#each carriage in (carriages this.sfid)}}
+                {{> carriageItem carriage}}
+            {{/each}}
+        </div>
+        {{#if activeCarriageId}}
+            {{> carriageStatus sfid=activeCarriageId}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="carriageItem">
+    <div class="carriage" data-number="{{this.number_in_train__c}}">
+        <div class="{{carriageImage this.number_in_train__c}}" alt="Carriage illustration"></div>
+        <div class="caption">
+            {{this.name}}
+            <i class="status icon signal"></i>
+        </div>
+    </div>
+</template>
+
+<template name="carriageStatus">
+    <div class="sb">
+        {{this.sfid}}
+    </div>
 </template>
