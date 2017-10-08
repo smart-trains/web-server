@@ -1,0 +1,83 @@
+<template name="carriageStatus">
+    <div class="ui grid">
+        <div class="twelve wide column">
+            {{> irCells sfid=this.sfid}}
+        </div>
+        <div class="four wide column">
+            <div class="ui list">
+                <a class="item">
+                    <i class="train icon"></i>
+                    <div class="content">
+                        <div class="header">Congestion</div>
+                        <div class="description">No</div>
+                    </div>
+                </a>
+                <a class="item">
+                    <i class="fire icon"></i>
+                    <div class="content">
+                        <div class="header">Temperature</div>
+                        <div class="description">-273</div>
+                    </div>
+                </a>
+                <a class="item">
+                    <i class="tint icon"></i>
+                    <div class="content">
+                        <div class="header">Humidity</div>
+                        <div class="description">0%</div>
+                    </div>
+                </a>
+                <div class="item">
+                    <i class="move icon"></i>
+                    <div class="content">
+                        <div class="header">Vibration</div>
+                        <div class="description">No</div>
+                        <div class="list">
+                            <a class="item">
+                                <i class="exchange icon"></i>
+                                <div class="content">
+                                    <div class="header">Acceleration X</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                            <a class="item">
+                                <i class="arrow circle down icon"></i>
+                                <div class="content">
+                                    <div class="header">Acceleration Y</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                            <a class="item">
+                                <i class="angle double up icon"></i>
+                                <div class="content">
+                                    <div class="header">Acceleration Z</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                            <a class="item">
+                                <i class="undo icon"></i>
+                                <div class="content">
+                                    <div class="header">Gyro X</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                            <a class="item">
+                                <i class="repeat icon"></i>
+                                <div class="content">
+                                    <div class="header">Gyro Y</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                            <a class="item">
+                                <i class="reply all icon"></i>
+                                <div class="content">
+                                    <div class="header">Gyro Z</div>
+                                    <div class="description">0</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

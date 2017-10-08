@@ -1,0 +1,31 @@
+@import (reference) "../../pages/main/main";
+
+.carriage {
+  flex-basis: 126px;
+  flex-shrink: 1;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+
+  &.active {
+    background: #EFEFEF;
+
+    .caption .text {
+      color: @metro_blue;
+    }
+  }
+
+  .car1 {
+    .carriage-image("/images/car1.png");
+  }
+  .car2 {
+    .carriage-image("/images/car2.png");
+  }
+  .car3 {
+    .carriage-image("/images/car3.png");
+  }
+
+  .caption {
+    text-align: center;
+  }
+}

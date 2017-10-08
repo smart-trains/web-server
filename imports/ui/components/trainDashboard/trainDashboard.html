@@ -1,0 +1,7 @@
+<template name="trainDashboard">
+    <div class="train-dashboard ui styled accordion fluid">
+        {{#each train in trains}}
+            {{> trainItem train}}
+        {{/each}}
+    </div>
+</template>

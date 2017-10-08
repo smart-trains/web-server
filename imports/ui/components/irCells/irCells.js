@@ -1,4 +1,3 @@
-import { Meteor } from "meteor/meteor";
 import { Template } from 'meteor/templating';
 
 import is from "is";
@@ -9,8 +8,8 @@ import {
 
 import { NUM_CELLS } from "../../../config/consts";
 
-import "./ir_cells.html";
-import "./ir_cells.css";
+import "./irCells.html";
+import "./irCells.css";
 
 
 Template.irCells.helpers({

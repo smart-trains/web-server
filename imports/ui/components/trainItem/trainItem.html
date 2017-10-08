@@ -1,0 +1,24 @@
+<template name="trainItem">
+    <div class="title">
+        <i class="dropdown icon"></i>
+        {{this.name}}
+    </div>
+
+    <div class="content">
+        <p class="transition visible">
+            {{this.name}} with registration ID {{this.sfid}}
+        </p>
+
+        {{> lcuItem lcuStatus}}
+
+        <div class="carriages">
+            {{#each carriage in carriages}}
+                {{> carriageItem carriage=carriage isActive=(isActive carriage)}}
+            {{/each}}
+        </div>
+        {{#if activeCarriageId}}
+            <div class="ui divider"></div>
+            {{> carriageStatus sfid=activeCarriageId}}
+        {{/if}}
+    </div>
+</template>
