@@ -12,6 +12,10 @@ Template.trainDashboard.onCreated(function() {
     this.subscribe("trains");
     this.subscribe("carriages");
     this.subscribe("lcu_status");
+    this.subscribe("temperature");
+    this.subscribe("humidity");
+    this.subscribe("vibration");
+    this.subscribe("temperature_matrix");
 });
 
 Template.trainDashboard.onRendered(function() {

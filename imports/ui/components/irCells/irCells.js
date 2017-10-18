@@ -14,7 +14,12 @@ import "./irCells.less";
 
 Template.irCells.helpers({
     cells() {
-        const data = TemperatureMatrix.find({ carriage__c: this.sfid }, { sort: { recorded_at__c: -1 } }) || {};
+        const data = TemperatureMatrix.find({
+                    carriage__c: this.sfid
+                }, {
+                    sort: { recorded_at__c: -1 },
+                    limit: 1
+                }).fetch() || {};
         // const data = {};
         //
         // for (let i = 0; i < NUM_CELLS; i++) {

@@ -13,7 +13,7 @@
 
         <div class="carriages">
             {{#each carriage in carriages}}
-                {{> carriageItem carriage=carriage isActive=(isActive carriage)}}
+                {{> carriageItem carriage=carriage isActive=(isActive carriage) isOnline=(isOnline carriage)}}
             {{/each}}
         </div>
         {{#if activeCarriageId}}

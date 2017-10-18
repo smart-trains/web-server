@@ -39,6 +39,7 @@ Meteor.publish('lcu_status', function() {
         SELECT id AS _id, name, sfid, train__c, ip__c, ssid__c, recorded_at__c
         FROM lcu_status__c
         ORDER BY _id DESC
+        LIMIT 100
     `;
 
     const triggers = defaultTrigger;
@@ -59,6 +60,7 @@ Meteor.publish('temperature_matrix', function() {
         SELECT id AS _id, name, sfid, carriage__c, ${fieldNames}, recorded_at__c
         FROM temperature_matrix__c
         ORDER BY _id DESC
+        LIMIT 50
     `;
 
     const triggers = defaultTrigger;
@@ -71,6 +73,7 @@ Meteor.publish('temperature', function() {
         SELECT id AS _id, name, sfid, carriage__c, temperature__c, recorded_at__c
         FROM temperature__c
         ORDER BY _id DESC
+        LIMIT 100
     `;
 
     const triggers = defaultTrigger;
@@ -83,6 +86,7 @@ Meteor.publish('humidity', function() {
         SELECT id AS _id, name, sfid, carriage__c, humidity__c, recorded_at__c
         FROM humidity__c
         ORDER BY _id DESC
+        LIMIT 100
     `;
 
     const triggers = defaultTrigger;
@@ -98,6 +102,7 @@ Meteor.publish('vibration', function() {
             recorded_at__c
         FROM vibration__c
         ORDER BY _id DESC
+        LIMIT 100
     `;
 
     const triggers = defaultTrigger;

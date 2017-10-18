@@ -13,4 +13,7 @@ Template.carriageItem.helpers({
     carriageImage() {
         return `car${(this.carriage.number_in_train__c - 1) % 3 + 1}`;
     },
+    carriageClass() {
+        return this.isOnline ? "online" : "";
+    }
 });
