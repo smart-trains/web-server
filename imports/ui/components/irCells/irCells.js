@@ -19,7 +19,7 @@ Template.irCells.helpers({
                 }, {
                     sort: { recorded_at__c: -1 },
                     limit: 1
-                }).fetch() || {};
+                }).fetch()[0] || {};
         // const data = {};
         //
         // for (let i = 0; i < NUM_CELLS; i++) {
@@ -32,7 +32,7 @@ Template.irCells.helpers({
 
         for (let i = 0; i < NUM_CELLS; i++) {
             const index = Math.floor(i / CELLS_PER_ROW);
-            const temp = is.number(data["cell" + i]) ? data["cell" + i] : -273;
+            const temp = is.number(data["cell_" + i + "__c"]) ? data["cell_" + i + "__c"] : -273;
 
             if (i % CELLS_PER_ROW === 0) {
                 cells[index] = [temp];

@@ -65,5 +65,19 @@ Template.carriageStatus.helpers({
             gyroY: gyro_y__c.toFixed(2),
             gyroZ: gyro_z__c.toFixed(2),
         };
+    },
+    isVibration() {
+        const acceleration = Vibration.find({
+            carriage__c: this.sfid
+        }, {
+            sort: { recorded_at__c: -1 },
+            limit: 2
+        }).fetch();
+
+        const change = Math.abs(acceleration[1].accelZ - acceleration[0].accelZ);
+
+        return change > 0.3
+            ? "Yes"
+            : "No";
     }
 });
