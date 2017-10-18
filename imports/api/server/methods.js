@@ -83,7 +83,7 @@ Meteor.methods({
         const sql = `
         INSERT INTO vibration__c
         (carriage__c, acceleration_x__c, acceleration_y__c, acceleration_z__c, 
-        gyro_x__c, gyro_x__c, gyro_z__c, recorded_at__c)
+        gyro_x__c, gyro_y__c, gyro_z__c, recorded_at__c)
         VALUES
         ($[carriage__c], $[acceleration_x__c], $[acceleration_y__c], $[acceleration_z__c], 
         $[gyro_x__c], $[gyro_y__c], $[gyro_z__c], $[recorded_at__c])
