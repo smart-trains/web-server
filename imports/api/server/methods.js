@@ -29,6 +29,8 @@ Meteor.methods({
 
         for (let type of types) {
             const dataOfType = data[type];
+            dataOfType.carriage__c = data.carriage__c;
+            dataOfType.recorded_at__c = data.recorded_at__c;
 
             if (dataOfType) {
                 Meteor.call(`${type}_insert`, dataOfType);
