@@ -27,10 +27,13 @@ Meteor.methods({
             'vibration',
         ];
 
+        console.log(data);
+
         for (let type of types) {
             const dataOfType = data[type];
 
             if (dataOfType) {
+                console.log(dataOfType);
                 dataOfType.carriage__c = data.carriage__c;
                 dataOfType.recorded_at__c = data.recorded_at__c;
                 Meteor.call(`${type}_insert`, dataOfType);
