@@ -9,12 +9,19 @@ import {
 import { NUM_CELLS } from "../../../config/consts";
 
 import "./irCells.html";
-import "./irCells.css";
+import "./irCells.less";
 
 
 Template.irCells.helpers({
     cells() {
         const data = TemperatureMatrix.find({ carriage__c: this.sfid }, { sort: { recorded_at__c: -1 } }) || {};
+        // const data = {};
+        //
+        // for (let i = 0; i < NUM_CELLS; i++) {
+        //     data["cell" + i] = parseFloat((20 + (Math.random() * 10 - 2.5)).toFixed(2));
+        // }
+
+
         const CELLS_PER_ROW = 8;
         const cells = [];
 
@@ -42,15 +49,15 @@ Template.irCellsRows.helpers({
             return background
                 .replace("red", "0")
                 .replace("blue", "0");
-        } else if (temp > 80) {
+        } else if (temp > 50) {
             return background
                 .replace("0", "255")
                 .replace("red", "255")
                 .replace("blue", "255");
         } else {
             return background
-                .replace("red", Math.round(temp / 80 * 255))
-                .replace("blue", Math.round(255 - temp / 80 * 255));
+                .replace("red", Math.round(temp / 50 * 255))
+                .replace("blue", Math.round(255 - temp / 50 * 255));
         }
     }
 });

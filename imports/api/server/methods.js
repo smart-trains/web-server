@@ -19,6 +19,22 @@ Meteor.methods({
 
         mpg.none(sql, data);
     },
+    'data_insert'(data) {
+        const types = [
+            'temperature_matrix',
+            'temperature',
+            'humidity',
+            'vibration',
+        ];
+
+        for (let type of types) {
+            const dataOfType = data[type];
+
+            if (dataOfType) {
+                Meteor.call(`${type}_insert`, dataOfType);
+            }
+        }
+    },
     'temperature_matrix_insert'(data) {
         const cellNames = [];
 
@@ -34,6 +50,38 @@ Meteor.methods({
         (carriage__c, thermistor__c, recorded_at__c, ${fieldNames})
         VALUES
         ($[carriage__c], $[thermistor__c], $[recorded_at__c], ${valueNames})
+        `;
+
+        mpg.none(sql, data);
+    },
+    'temperature_insert'(data) {
+        const sql = `
+        INSERT INTO temperature__c
+        (carriage__c, temperature__c, recorded_at__c)
+        VALUES
+        ($[carriage__c], $[temperature__c], $[recorded_at__c])
+        `;
+
+        mpg.none(sql, data);
+    },
+    'humidity_insert'(data) {
+        const sql = `
+        INSERT INTO humidity__c
+        (carriage__c, humidity__c, recorded_at__c)
+        VALUES
+        ($[carriage__c], $[humidity__c], $[recorded_at__c])
+        `;
+
+        mpg.none(sql, data);
+    },
+    'vibration_insert'(data) {
+        const sql = `
+        INSERT INTO vibration__c
+        (carriage__c, acceleration_x__c, acceleration_y__c, acceleration_z__c, 
+        gyro_x__c, gyro_x__c, gyro_z__c, recorded_at__c)
+        VALUES
+        ($[carriage__c], $[acceleration_x__c], $[acceleration_y__c], $[acceleration_z__c], 
+        $[gyro_x__c], $[gyro_y__c], $[gyro_z__c], $[recorded_at__c])
         `;
 
         mpg.none(sql, data);
