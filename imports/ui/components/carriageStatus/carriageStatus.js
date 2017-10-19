@@ -3,11 +3,16 @@
  */
 import { Template } from 'meteor/templating';
 
+import is from "is";
+
 import {
     Temperature,
+    TemperatureMatrix,
     Humidity,
     Vibration
 } from "../../../api/client/collections";
+
+import { NUM_CELLS } from "../../../config/consts";
 
 import "./carriageStatus.html";
 import "./carriageStatus.less";
@@ -66,6 +71,29 @@ Template.carriageStatus.helpers({
             gyroZ: gyro_z__c.toFixed(2),
         };
     },
+    isCongested() {
+        const data = TemperatureMatrix.find({
+            carriage__c: this.sfid
+        }, {
+            sort: { recorded_at__c: -1 },
+            limit: 1
+        }).fetch()[0];
+        const env = is.number(data["thermistor__c"]) ? data["thermistor__c"] : -273;
+        let numOfOccupiedCells = 0;
+
+        for (let i = 0; i < NUM_CELLS; i++) {
+            const temp = is.number(data["cell_" + i + "__c"]) ? data["cell_" + i + "__c"] : -273;
+
+            if (temp - env > 10) {
+                numOfOccupiedCells++;
+            }
+        }
+
+        return numOfOccupiedCells > 32
+            ? "Yes"
+            : "No";
+
+    },
     isVibration() {
         const acceleration = Vibration.find({
             carriage__c: this.sfid
@@ -74,9 +102,9 @@ Template.carriageStatus.helpers({
             limit: 2
         }).fetch();
 
-        const change = Math.abs(acceleration[1].accelZ - acceleration[0].accelZ);
+        const change = Math.abs(parseFloat(acceleration[1].acceleration_z__c) - parseFloat(acceleration[0].acceleration_z__c));
 
-        return change > 0.3
+        return change > 0.1
             ? "Yes"
             : "No";
     }

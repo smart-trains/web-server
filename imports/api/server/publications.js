@@ -57,7 +57,7 @@ Meteor.publish('temperature_matrix', function() {
     const fieldNames = cellNames.join(", ");
 
     const sql = `
-        SELECT id AS _id, name, sfid, carriage__c, ${fieldNames}, recorded_at__c
+        SELECT id AS _id, name, sfid, carriage__c, ${fieldNames}, thermistor__c, recorded_at__c
         FROM temperature_matrix__c
         ORDER BY _id DESC
         LIMIT 50
