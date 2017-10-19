@@ -50,19 +50,19 @@ Template.irCellsRows.helpers({
     color(temp) {
         const background = "background: rgb(red, 0, blue)";
 
-        if (temp < 0) {
+        if (temp < 10) {
             return background
                 .replace("red", "0")
                 .replace("blue", "0");
-        } else if (temp > 50) {
+        } else if (temp > 40) {
             return background
                 .replace("0", "255")
                 .replace("red", "255")
                 .replace("blue", "255");
         } else {
             return background
-                .replace("red", Math.round(temp / 50 * 255))
-                .replace("blue", Math.round(255 - temp / 50 * 255));
+                .replace("red", Math.round((temp - 10) / 30 * 255))
+                .replace("blue", Math.round(255 - (temp - 10) / 30 * 255));
         }
     }
 });

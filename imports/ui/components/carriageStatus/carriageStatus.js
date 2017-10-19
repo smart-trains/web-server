@@ -81,10 +81,19 @@ Template.carriageStatus.helpers({
         const env = is.number(data["thermistor__c"]) ? data["thermistor__c"] : -273;
         let numOfOccupiedCells = 0;
 
+        const temps = [];
+
         for (let i = 0; i < NUM_CELLS; i++) {
             const temp = is.number(data["cell_" + i + "__c"]) ? data["cell_" + i + "__c"] : -273;
+            temps.push(temp);
+        }
 
-            if (temp - env > 10) {
+        temps.sort((i1, i2) => i1 - i2);
+
+        const median = temps[Math.floor(NUM_CELLS / 2)];
+
+        for (let i = 0; i < NUM_CELLS; i++) {
+            if (temps[i] > median) {
                 numOfOccupiedCells++;
             }
         }
@@ -104,7 +113,7 @@ Template.carriageStatus.helpers({
 
         const change = Math.abs(parseFloat(acceleration[1].acceleration_z__c) - parseFloat(acceleration[0].acceleration_z__c));
 
-        return change > 0.1
+        return change > 0.05
             ? "Yes"
             : "No";
     }
