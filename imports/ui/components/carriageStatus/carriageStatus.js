@@ -90,15 +90,15 @@ Template.carriageStatus.helpers({
 
         temps.sort((i1, i2) => i1 - i2);
 
-        const median = temps[Math.floor(NUM_CELLS / 2)];
+        const average = temps.reduce((sum, item) => sum += item, 0) / temps.length;
 
         for (let i = 0; i < NUM_CELLS; i++) {
-            if (temps[i] > median) {
+            if (temps[i] > average) {
                 numOfOccupiedCells++;
             }
         }
 
-        return numOfOccupiedCells > 32
+        return numOfOccupiedCells > 6
             ? "Yes"
             : "No";
 
